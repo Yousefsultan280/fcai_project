@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // هنا تضيف عملية تسجيل الدخول
+
               },
               child: Text("Log In"),
               style: ElevatedButton.styleFrom(minimumSize: Size(double.infinity, 50)),
@@ -42,9 +42,7 @@ class LoginScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                IconButton(onPressed: () {}, icon: Icon(Icons.apple)),
                 IconButton(onPressed: () {}, icon: Icon(Icons.g_mobiledata)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.facebook)),
               ],
             ),
           ],

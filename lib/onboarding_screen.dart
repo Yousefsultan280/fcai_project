@@ -12,19 +12,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<Map<String, String>> onboardingData = [
     {
-      "image": "assets/images/onboarding1.PNG",
-      "title": "Consultation with a Doctor",
-      "subtitle": "We help patients manage and schedule appointment with the Doctors..."
+      "image": "assets/images/Voice-control-rafiki.png",
+      "title": "Record Your Cough",
+      "subtitle": "Simply record your cough, and let our AI listen carefully to detect any potential lung issues."
     },
     {
-      "image": "assets/images/onboarding2.PNG",
-      "title": "Buy Medications at a discount",
-      "subtitle": "We help patients to choose the right medical treatment..."
+      "image": "assets/images/Data-extraction-pana.png",
+      "title": "AI Analyzes Your Lungs",
+      "subtitle": "Our advanced AI algorithms analyze your cough and provide accurate insights into your lung health"
     },
     {
-      "image": "assets/images/onboarding3.PNG",
-      "title": "Keep EHR files in one place",
-      "subtitle": "Our vision is to improve the way of the world..."
+      "image": "assets/images/Resume-folder-pana.png",
+      "title": "Get Health Insights",
+      "subtitle": "Receive detailed results and recommendations to take care of your lungs and improve your respiratory health"
     },
   ];
 

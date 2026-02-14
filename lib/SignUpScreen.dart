@@ -26,7 +26,7 @@ class SignUpScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // هنا تضيف عملية التسجيل
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
               },
               child: Text("Sign Up"),
               style: ElevatedButton.styleFrom(minimumSize: Size(double.infinity, 50)),
@@ -44,9 +44,7 @@ class SignUpScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                IconButton(onPressed: () {}, icon: Icon(Icons.apple)),
                 IconButton(onPressed: () {}, icon: Icon(Icons.g_mobiledata)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.facebook)),
               ],
             ),
           ],
