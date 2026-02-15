@@ -1,5 +1,5 @@
-import 'package:fcai_project/custom/CustomButton.dart';
-import 'package:fcai_project/custom/custom_page.dart';
+import 'custom/CustomButton.dart';
+import 'custom/custom_page.dart';
 import 'package:flutter/material.dart';
 
 class WeightPage extends StatefulWidget {
@@ -42,7 +42,7 @@ class _WeightPageState extends State<WeightPage> {
                   });
                 }),
             Spacer(),
-            CustomButton(onTap: (){})
+            CustomButton(onTap: (){},text: "Countinue",)
           ],
         ),
       ),

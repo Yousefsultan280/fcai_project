@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'LoginScreen.dart';
+import '../auth_pages/LoginScreen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -34,11 +34,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       backgroundColor: Color(0xFFFFFFFF),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        elevation: 0,
         actions: [
           TextButton(
             onPressed: () {
-              // هنا هننقلك لصفحة Login
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => LoginScreen()),
@@ -64,10 +62,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               itemCount: onboardingData.length,
               itemBuilder: (context, index) {
                 return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    SizedBox(height: 50,),
                     SizedBox(
-                      height: 380,
+                      height: 400,
                       child: Image.asset(
                         onboardingData[index]["image"]!,
                         fit: BoxFit.cover,
@@ -89,27 +87,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         textAlign: TextAlign.center,
                       ),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        onboardingData.length,
+                            (index) => AnimatedContainer(
+                          duration: Duration(milliseconds: 300),
+                          margin: EdgeInsets.symmetric(horizontal: 5, vertical: 20),
+                          width: _currentPage == index ? 20 : 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: _currentPage == index ? Colors.blue : Colors.grey[400],
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 );
               },
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              onboardingData.length,
-                  (index) => AnimatedContainer(
-                duration: Duration(milliseconds: 300),
-                margin: EdgeInsets.symmetric(horizontal: 5, vertical: 20),
-                width: _currentPage == index ? 20 : 8,
-                height: 8,
-                decoration: BoxDecoration(
-                  color: _currentPage == index ? Colors.blue : Colors.grey[400],
-                  borderRadius: BorderRadius.circular(5),
-                ),
-              ),
-            ),
-          ),
+
         ],
       ),
     );

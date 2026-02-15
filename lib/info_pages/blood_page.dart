@@ -1,5 +1,5 @@
-import 'package:fcai_project/custom/CustomButton.dart';
-import 'package:fcai_project/custom/custom_page.dart';
+import 'custom/CustomButton.dart';
+import 'custom/custom_page.dart';
 import 'package:flutter/material.dart';
 
 class BloodPage extends StatefulWidget {
@@ -65,7 +65,7 @@ class _BloodPageState extends State<BloodPage> {
                 },
               ),
             ),
-            CustomButton(onTap: () {}),
+            CustomButton(onTap: () {},text: "Countinue"),
           ],
         ),
       ),

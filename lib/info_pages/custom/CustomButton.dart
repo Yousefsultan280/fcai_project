@@ -2,12 +2,14 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({
+   CustomButton({
     super.key,
     required this.onTap,
+    required this.text,
   });
 
   final void Function() onTap;
+  String text;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class CustomButton extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            "Countinue",
+            text,
             style: TextStyle(color: Colors.white, fontSize: 25),
           ),
         ),

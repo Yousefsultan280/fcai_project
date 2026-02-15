@@ -1,5 +1,5 @@
-import 'package:fcai_project/custom/CustomButton.dart';
-import 'package:fcai_project/custom/custom_page.dart';
+import 'custom/CustomButton.dart';
+import 'custom/custom_page.dart';
 import 'package:flutter/material.dart';
 
 class GenderPage extends StatefulWidget {
@@ -54,7 +54,7 @@ class _GenderPageState extends State<GenderPage> {
               ],
             ),
             Spacer(),
-            CustomButton(onTap: (){})
+            CustomButton(onTap: (){},text: "Countinue",)
           ],
         ),
       ),

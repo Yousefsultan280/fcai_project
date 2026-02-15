@@ -1,6 +1,7 @@
-import 'package:fcai_project/custom/CustomButton.dart';
-import 'package:fcai_project/custom/custom_page.dart';
+
 import 'package:flutter/material.dart';
+import 'custom/CustomButton.dart';
+import 'custom/custom_page.dart';
 
 class AgePage extends StatefulWidget {
   const AgePage({super.key});
@@ -42,7 +43,7 @@ class _AgePageState extends State<AgePage> {
               });
                 }),
             Spacer(),
-            CustomButton(onTap: (){})
+            CustomButton(onTap: (){}, text: "Countinue")
           ],
         ),
       ),
