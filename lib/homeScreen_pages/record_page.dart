@@ -47,13 +47,11 @@ class _RecordPageState extends State<RecordPage> {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color(0xff1d4ed8),
             Color(0xff60a5fa),
-            Color(0xff3b82f6),
-            Color(0xff1d4ed8),
+            Color(0xff2563eb),
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -70,7 +68,7 @@ class _RecordPageState extends State<RecordPage> {
                   color: Colors.white,
                   fontSize: 22,
                 ),),
-                const Text(
+                 Text(
                   "Youssef Sultan",
                   style: TextStyle(
                     color: Colors.white,
@@ -80,26 +78,26 @@ class _RecordPageState extends State<RecordPage> {
                 ),
               ],
             ),
-            const SizedBox(height: 150),
+             SizedBox(height: 150),
             Icon(
               _isRecording ? Icons.mic : Icons.mic_none,
               color: Colors.white,
               size: 100,
             ),
-            const SizedBox(height: 20),
+             SizedBox(height: 20),
             Text(
               _isRecording ? 'Recording...' : 'Tap to start',
-              style: const TextStyle(
+              style:  TextStyle(
                 color: Colors.white,
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 30),
+             SizedBox(height: 30),
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white.withOpacity(0.9),
-                padding: const EdgeInsets.symmetric(
+                padding:  EdgeInsets.symmetric(
                   horizontal: 32,
                   vertical: 14,
                 ),
@@ -114,7 +112,7 @@ class _RecordPageState extends State<RecordPage> {
               ),
               label: Text(
                 _isRecording ? 'Stop' : 'Start Recording',
-                style: const TextStyle(
+                style:  TextStyle(
                   color: Colors.indigo,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

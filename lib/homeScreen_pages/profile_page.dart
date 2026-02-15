@@ -6,10 +6,10 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xfff5f9ff),
+        backgroundColor:  Color(0xfff5f9ff),
       appBar: AppBar(
-        backgroundColor: const Color(0xff2563eb),
-        title: const Text(
+        backgroundColor:  Color(0xff2563eb),
+        title:  Text(
           "My Profile",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
@@ -21,7 +21,7 @@ class ProfilePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20),
+                 SizedBox(height: 20),
                 Column(
                   children: [
                     _infoCard(
@@ -35,18 +35,13 @@ class ProfilePage extends StatelessWidget {
                       value: "yousef sultan",
                     ),
                     _infoCard(
-                      icon: Icons.phone_rounded,
-                      title: "Phone",
-                      value: "+20 1063839235",
-                    ),
-                    _infoCard(
                       icon: Icons.password_outlined,
                       title: "Password",
                       value: "********",
                     ),
                   ],
                 ),
-                const SizedBox(height: 25),
+                 SizedBox(height: 25),
                 _actionButton(
                   icon: Icons.logout_rounded,
                   text: "Logout",
@@ -72,11 +67,11 @@ class ProfilePage extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: const Color(0xff2563eb).withOpacity(0.1),
-          child: Icon(icon, color: const Color(0xff2563eb)),
+          backgroundColor:  Color(0xff2563eb),
+          child: Icon(icon, color:  Colors.white),
         ),
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text(value, style: const TextStyle(fontSize: 15)),
+        title: Text(title, style:  TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Text(value, style:  TextStyle(fontSize: 15)),
         trailing: Icon(Icons.arrow_forward_ios_outlined,color: Color(0xff2563eb),),
       ),
     );
