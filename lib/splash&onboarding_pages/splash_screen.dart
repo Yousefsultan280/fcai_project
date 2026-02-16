@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
 
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 10), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -32,20 +32,14 @@ class _SplashScreenState extends State<SplashScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Container(
-            //   width: double.infinity,
-            //   height: 150,
-            //   color: Color(0xff17116f),
-            //
-            // ),
+
             Container(
               width: double.infinity,
-        
-            
+
               child: const Center(
                 child: Image(
                   image: AssetImage('assets/images/pulmoscan_splash.png'),fit: BoxFit.fill,
-                 // width: 180, // حجم مناسب في المنتصف
+
                 ),
               ),
             ),

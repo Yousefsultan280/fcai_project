@@ -103,7 +103,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           if (v.length < 3)
                             return "Min 3 characters";
 
-                          // هنا مسموح بالمسافات
                           return null;
                         },
                       ),
