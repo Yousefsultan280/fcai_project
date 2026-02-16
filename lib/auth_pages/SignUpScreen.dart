@@ -58,10 +58,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(20),
-
+              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 50),
               child: Container(
-                padding: EdgeInsets.all(25),
+                padding: EdgeInsets.only(left: 15,right: 15),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(28),
