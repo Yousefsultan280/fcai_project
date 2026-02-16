@@ -1,3 +1,5 @@
+import 'package:fcai_project/info_pages/gender_page.dart';
+
 import 'custom/CustomButton.dart';
 import 'custom/custom_page.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +44,9 @@ class _WeightPageState extends State<WeightPage> {
                   });
                 }),
             Spacer(),
-            CustomButton(onTap: (){},text: "Countinue",)
+            CustomButton(onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => GenderPage()));
+            },text: "Countinue",)
           ],
         ),
       ),

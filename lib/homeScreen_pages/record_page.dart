@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sound/flutter_sound.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class RecordPage extends StatefulWidget {
   const RecordPage({super.key});
@@ -8,7 +10,7 @@ class RecordPage extends StatefulWidget {
 }
 
 class _RecordPageState extends State<RecordPage> {
-  // final FlutterSoundRecorder _recorder = FlutterSoundRecorder();
+   final FlutterSoundRecorder _recorder = FlutterSoundRecorder();
   bool _isRecording = false;
   String? _filePath;
 
@@ -19,29 +21,29 @@ class _RecordPageState extends State<RecordPage> {
   }
 
   Future<void> _initRecorder() async {
-    // await Permission.microphone.request();
-    // await _recorder.openRecorder();
+    await Permission.microphone.request();
+     await _recorder.openRecorder();
   }
 
   Future<void> _toggleRecording() async {
     if (_isRecording) {
-      // final result = await _recorder.stopRecorder();
+       final result = await _recorder.stopRecorder();
       setState(() {
-        // _filePath = result;
+         _filePath = result;
         _isRecording = false;
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('🎧 Recording saved at: $_filePath')),
+        SnackBar(content: Text('Recording saved at: $_filePath')),
       );
     } else {
-      // await _recorder.startRecorder(toFile: 'voice_record.aac');
+       await _recorder.startRecorder(toFile: 'voice_record.aac');
       setState(() => _isRecording = true);
     }
   }
 
   @override
   void dispose() {
-    // _recorder.closeRecorder();
+     _recorder.closeRecorder();
     super.dispose();
   }
   @override

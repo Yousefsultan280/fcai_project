@@ -1,3 +1,5 @@
+import 'package:fcai_project/info_pages/blood_page.dart';
+
 import 'custom/CustomButton.dart';
 import 'custom/custom_page.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +56,9 @@ class _GenderPageState extends State<GenderPage> {
               ],
             ),
             Spacer(),
-            CustomButton(onTap: (){},text: "Countinue",)
+            CustomButton(onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => BloodPage()));
+            },text: "Countinue",)
           ],
         ),
       ),

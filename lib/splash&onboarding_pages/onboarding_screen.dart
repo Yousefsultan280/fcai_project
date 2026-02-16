@@ -1,3 +1,4 @@
+import 'package:fcai_project/info_pages/age_page.dart';
 import 'package:flutter/material.dart';
 import '../auth_pages/LoginScreen.dart';
 
@@ -39,7 +40,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
+                MaterialPageRoute(builder: (context) => AgePage()),
               );
             },
             child: Text(

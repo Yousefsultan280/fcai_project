@@ -1,4 +1,5 @@
 
+import 'package:fcai_project/info_pages/weight_page.dart';
 import 'package:flutter/material.dart';
 import 'custom/CustomButton.dart';
 import 'custom/custom_page.dart';
@@ -43,7 +44,9 @@ class _AgePageState extends State<AgePage> {
               });
                 }),
             Spacer(),
-            CustomButton(onTap: (){}, text: "Countinue")
+            CustomButton(onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => WeightPage()));
+            }, text: "Countinue")
           ],
         ),
       ),
