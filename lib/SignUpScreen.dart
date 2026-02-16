@@ -91,7 +91,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               fontSize: 26,
                               fontWeight: FontWeight.bold)),
 
+
                       SizedBox(height: 25),
+                      //===================== text field for display name ================
+                      TextFormField(
+                        decoration: input("Display Name", Icons.person_outline),
+                        validator: (v) {
+                          if (v == null || v.isEmpty)
+                            return "Enter display name";
+
+                          if (v.length < 3)
+                            return "Min 3 characters";
+
+                          // هنا مسموح بالمسافات
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 18),
+
 
                       //===================== text field for username ================
                       TextFormField(
