@@ -93,7 +93,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                       SizedBox(height: 25),
 
-                     //===================== text field for name ================
+                      //===================== text field for username ================
+                      TextFormField(
+                        decoration: input("Username", Icons.person),
+                        validator: (v) {
+                          if (v == null || v.isEmpty)
+                            return "Enter username";
+
+                          if (v.length < 3)
+                            return "Min 3 characters";
+
+                          if (v.contains(" "))
+                            return "Username must not contain spaces";
+
+                          return null;
+                        },
+                      ),
+
+                      SizedBox(height: 18),
+
+
+                      //===================== text field for email ================
                       TextFormField(
                         decoration: input("Email", Icons.email),
                         validator: (v) {
