@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'SignUpScreen.dart';
 
-// class animation
+//================== class animation ======================
 void navigateWithAnimation(BuildContext context, Widget page) {
   Navigator.push(
     context,
@@ -39,7 +39,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool obscure = true;
-
+//===================== function to create input decoration with icon ================
   InputDecoration input(String label, IconData icon) {
     return InputDecoration(
       labelText: label,
@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        //background
+        //============ background ============
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xff1e3a8a), Color(0xff3b82f6)],
@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Padding(
               padding: const EdgeInsets.all(20),
 
-              //card
+              //==================== card ===================
               child: Container(
                 padding: EdgeInsets.all(25),
                 decoration: BoxDecoration(
@@ -97,13 +97,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
 
+                // ===================== form ================
                 child: Form(
                   key: _formKey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
 
-                     //logo
+                     //================ logo ==================
                       CircleAvatar(
                         radius: 40,
                         backgroundColor: Color(0xff2563eb),
@@ -120,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       SizedBox(height: 25),
 
-                      //email
+                      //============= email ================
                       TextFormField(
                         decoration: input("Email", Icons.email),
                         validator: (v) {
@@ -133,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       SizedBox(height: 18),
 
-                     //password
+                     //============= password ================
                       TextFormField(
                         obscureText: obscure,
                         decoration: input("Password", Icons.lock)
@@ -152,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       SizedBox(height: 25),
 
-                      //login button
+                      //=============== login button ================
                       ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {}
@@ -175,7 +176,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       SizedBox(height: 12),
 
-                      //google button
+                      //================= google button ==================
                       OutlinedButton.icon(
                         onPressed: () {},
                         icon: Image.network(
@@ -195,7 +196,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       SizedBox(height: 10),
 
-                      //create new account
+                      //======================== create new account ====================
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
                       TextButton(
                         onPressed: () {
                           navigateWithAnimation(context, SignUpScreen());
@@ -208,12 +212,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-                ),
+                    ],
+                  ),
               ),
             ),
           ),
         ),
       ),
+    ),
     );
   }
 }

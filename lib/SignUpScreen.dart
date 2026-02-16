@@ -16,7 +16,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final passwordController = TextEditingController();
   final confirmController = TextEditingController();
 
-  //function to create input decoration with icon
+  //===================== function to create input decoration with icon ================
   InputDecoration input(String label, IconData icon) {
     return InputDecoration(
       labelText: label,
@@ -45,7 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: Container(
 
-        //background
+        //============ background ============
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xff1e3a8a), Color(0xff3b82f6)],
@@ -53,6 +53,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             end: Alignment.bottomRight,
           ),
         ),
+
 
         child: Center(
           child: SingleChildScrollView(
@@ -73,6 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
 
+                //===================== form ==================
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -91,7 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                       SizedBox(height: 25),
 
-                      /// ===== EMAIL =====
+                     //===================== text field for name ================
                       TextFormField(
                         decoration: input("Email", Icons.email),
                         validator: (v) {
@@ -113,7 +115,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                       SizedBox(height: 18),
 
-                      /// ===== PASSWORD =====
+                      //========================= text field for password =====================
                       TextFormField(
                         controller: passwordController,
                         obscureText: p1,
@@ -141,7 +143,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                       SizedBox(height: 18),
 
-                      /// ===== CONFIRM PASSWORD =====
+                      // ===================== text field for confirm password ==================
                       TextFormField(
                         controller: confirmController,
                         obscureText: p2,
@@ -170,12 +172,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                       SizedBox(height: 25),
 
-                      /// 🔥 SIGN UP BUTTON
+                      //===================== sign up button ==================
                       ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
 
-                            /// نجاح التسجيل (مؤقت)
+
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(
                               SnackBar(
@@ -184,7 +186,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             );
 
-                            /// 🔥 يرجع لـ Login Screen
+                            //================ navigate to login screen =====================
                             navigateWithAnimation(context, LoginScreen());
 
                           }
@@ -200,8 +202,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               borderRadius: BorderRadius.circular(18)),
                         ),
                       ),
-                      SizedBox(height: 20),
 
+                      SizedBox(height: 20),
+                      //===================== or ===================
                       Row(
                         children: [
                           Expanded(child: Divider()),
@@ -215,6 +218,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                       SizedBox(height: 24),
 
+                      //===================== google button ===================
                       Material(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(14),
@@ -231,7 +235,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             child: Row(
                               children: [
                                 Image.network(
-                                  "https://developers.google.com/identity/images/g-logo.png",
+                                  "https://cdn-icons-png.flaticon.com/512/300/300221.png",
                                   height: 24,
                                 ),
 
@@ -261,6 +265,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                       SizedBox(height: 10),
 
+                      //===================== already have an account button ===================
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

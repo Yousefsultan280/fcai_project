@@ -6,6 +6,8 @@ class OnboardingScreen extends StatefulWidget {
   _OnboardingScreenState createState() => _OnboardingScreenState();
 }
 
+// ===================== class (list of map images and text) ======================
+
 class _OnboardingScreenState extends State<OnboardingScreen> {
   PageController _pageController = PageController();
   int _currentPage = 0;
@@ -38,12 +40,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              // هنا هننقلك لصفحة Login
+
+              //================== navigate to login screen ====================
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => LoginScreen()),
               );
             },
+
+            //================ skip button ==================
             child: Text(
               "Skip",
               style: TextStyle(color: Colors.blue, fontSize: 16),

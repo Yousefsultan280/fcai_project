@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Stack(
         children: [
 
-          // icons
+          //========== icons ============
           _circleIcon(top: 70, left: 40, image: 'capsules.png'),
           _circleIcon(top: 160, right: 30, image: 'medicine.png'),
           _circleIcon(bottom: 140, left: 30, image: 'doctor-consultation.png'),
@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
           _circleIcon(top: 260, left: 120, image: 'healthcare(1).png'),
           _circleIcon(bottom: 260, right: 120, image: 'medical-report.png'),
 
-          // center logo
+          //================ center logo ==================
           Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -73,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
     double? left,
     double? right,
     required String image,
-    double? imageSize, // حجم الصورة داخل الدائرة
+    double? imageSize,
   }) {
     return Positioned(
       top: top,
