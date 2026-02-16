@@ -19,27 +19,7 @@ class CustomPage extends StatelessWidget {
     double wid = MediaQuery.of(context).size.width;
     return Column(
       children: [
-        SizedBox(height: hei * .01),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            InkWell(
-              onTap: (){},
-              child: CircleAvatar(
-                backgroundColor: Colors.grey[300],
-                child: Icon(Icons.arrow_back_rounded),
-              ),
-            ),
-            InkWell(
-              onTap: (){},
-              child: Text(
-                "skip",
-                style: TextStyle(color: Colors.grey[700], fontSize: 18),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: hei * .03),
+        SizedBox(height: hei * .06),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -1,3 +1,5 @@
+import 'package:fcai_project/auth_pages/SignUpScreen.dart';
+
 import 'custom/CustomButton.dart';
 import 'custom/custom_page.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +67,9 @@ class _BloodPageState extends State<BloodPage> {
                 },
               ),
             ),
-            CustomButton(onTap: () {},text: "Countinue"),
+            CustomButton(onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen()));
+            },text: "Countinue"),
           ],
         ),
       ),
