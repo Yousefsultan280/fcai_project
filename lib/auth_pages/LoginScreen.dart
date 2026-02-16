@@ -6,7 +6,7 @@ import 'SignUpScreen.dart';
 
 //================== class animation ======================
 void navigateWithAnimation(BuildContext context, Widget page) {
-  Navigator.push(
+  Navigator.pushReplacement(
     context,
     PageRouteBuilder(
       transitionDuration: Duration(milliseconds: 500),

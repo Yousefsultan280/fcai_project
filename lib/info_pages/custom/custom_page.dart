@@ -23,13 +23,13 @@ class CustomPage extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("${number}", style: TextStyle(color: Colors.black, fontSize: 25)),
-            Text(" /4", style: TextStyle(color: Colors.grey, fontSize: 18)),
+            Text("${number}", style: TextStyle(color: Colors.white, fontSize: 25)),
+            Text(" /4", style: TextStyle(color: Colors.white, fontSize: 18)),
           ],
         ),
         SizedBox(height: hei * .01),
-        Text(text, style: TextStyle(color: Colors.black, fontSize: 25)),
-        Text(des, style: TextStyle(color: Colors.grey[600], fontSize: 18)),
+        Text(text, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 25)),
+        Text(des, style: TextStyle(color: Colors.white.withOpacity(0.85), fontSize: 18)),
       ],
     );
   }

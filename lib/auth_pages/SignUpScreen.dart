@@ -306,7 +306,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           TextButton(
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: () =>  navigateWithAnimation(context, LoginScreen()),
                             child: Row(
                               children: [
                                 Text(

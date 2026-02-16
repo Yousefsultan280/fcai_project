@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
 
-    Timer(const Duration(seconds: 10), () {
+    Timer(const Duration(seconds: 4), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -44,12 +44,12 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
         
-            // Container(
-            //   width: double.infinity,
-            //   height: 150,
-            //   color: Color(0xff195dfc),
-            //
-            // ),
+            Container(
+              width: double.infinity,
+              height: 150,
+              color: Color(0xff195dfc),
+
+            ),
           ],
         ),
       ),
