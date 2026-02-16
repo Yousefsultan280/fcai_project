@@ -1,11 +1,14 @@
-import 'package:fcai_project/info_pages/age_page.dart';
 import 'package:flutter/material.dart';
+
 import '../auth_pages/LoginScreen.dart';
+
 
 class OnboardingScreen extends StatefulWidget {
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
 }
+
+// ===================== class (list of map images and text) ======================
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   PageController _pageController = PageController();
@@ -35,14 +38,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       backgroundColor: Color(0xFFFFFFFF),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        elevation: 0,
         actions: [
           TextButton(
             onPressed: () {
+
+              //================== navigate to login screen ====================
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => AgePage()),
+                MaterialPageRoute(builder: (context) => LoginScreen()),
               );
             },
+
+            //================ skip button ==================
             child: Text(
               "Skip",
               style: TextStyle(color: Colors.blue, fontSize: 16),
@@ -63,10 +71,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               itemCount: onboardingData.length,
               itemBuilder: (context, index) {
                 return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 50,),
                     SizedBox(
-                      height: 400,
+                      height: 380,
                       child: Image.asset(
                         onboardingData[index]["image"]!,
                         fit: BoxFit.cover,
@@ -88,28 +96,27 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                        onboardingData.length,
-                            (index) => AnimatedContainer(
-                          duration: Duration(milliseconds: 300),
-                          margin: EdgeInsets.symmetric(horizontal: 5, vertical: 20),
-                          width: _currentPage == index ? 20 : 8,
-                          height: 8,
-                          decoration: BoxDecoration(
-                            color: _currentPage == index ? Colors.blue : Colors.grey[400],
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                      ),
-                    ),
                   ],
                 );
               },
             ),
           ),
-
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+              onboardingData.length,
+                  (index) => AnimatedContainer(
+                duration: Duration(milliseconds: 300),
+                margin: EdgeInsets.symmetric(horizontal: 5, vertical: 20),
+                width: _currentPage == index ? 20 : 8,
+                height: 8,
+                decoration: BoxDecoration(
+                  color: _currentPage == index ? Colors.blue : Colors.grey[400],
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
