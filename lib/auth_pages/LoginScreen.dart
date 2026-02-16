@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
+import '../homeScreen_pages/home_page.dart';
 import 'SignUpScreen.dart';
+
 
 //================== class animation ======================
 void navigateWithAnimation(BuildContext context, Widget page) {
@@ -106,11 +109,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
                      //================ logo ==================
                       CircleAvatar(
-                        radius: 40,
-                        backgroundColor: Color(0xff2563eb),
-                        child: Icon(Icons.local_hospital,
-                            color: Colors.white, size: 40),
-                      ),
+                        radius: 60,
+                        backgroundColor: Colors.white,
+                          backgroundImage:  AssetImage("assets/images/lung.png"),),
 
                       SizedBox(height: 15),
 
@@ -156,7 +157,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       //=============== login button ================
                       ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {}
+                          if (_formKey.currentState!.validate()) {
+                            navigateWithAnimation(context, HomePage());
+                          }
                         },
                         child: Text("Log In",
                             style: TextStyle(

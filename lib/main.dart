@@ -1,5 +1,6 @@
+import 'package:fcai_project/homeScreen_pages/home_page.dart';
 import 'package:flutter/material.dart';
-import 'splash_screen.dart';
+import 'splash&onboarding_pages/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
