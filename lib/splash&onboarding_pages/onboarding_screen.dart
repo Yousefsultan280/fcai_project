@@ -43,15 +43,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         actions: [
           TextButton(
             onPressed: () {
-
-              //================== navigate to login screen ====================
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => AgePage()),
+                MaterialPageRoute(builder: (context) => LoginScreen()),
               );
             },
-
-            //================ skip button ==================
             child: Text(
               "Skip",
               style: TextStyle(color: Colors.blue, fontSize: 16),

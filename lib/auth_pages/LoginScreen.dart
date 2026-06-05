@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../homeScreen_pages/home_page.dart';
 import 'SignUpScreen.dart';
 
-
 //================== class animation ======================
 void navigateWithAnimation(BuildContext context, Widget page) {
   Navigator.pushReplacement(
@@ -15,19 +14,13 @@ void navigateWithAnimation(BuildContext context, Widget page) {
         final slide = Tween(
           begin: Offset(1, 0),
           end: Offset.zero,
-        ).animate(CurvedAnimation(
-          parent: animation,
-          curve: Curves.easeInOut,
-        ));
+        ).animate(CurvedAnimation(parent: animation, curve: Curves.easeInOut));
 
         final fade = Tween<double>(begin: 0, end: 1).animate(animation);
 
         return FadeTransition(
           opacity: fade,
-          child: SlideTransition(
-            position: slide,
-            child: child,
-          ),
+          child: SlideTransition(position: slide, child: child),
         );
       },
     ),
@@ -42,7 +35,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool obscure = true;
-//===================== function to create input decoration with icon ================
+  //===================== function to create input decoration with icon ================
   InputDecoration input(String label, IconData icon) {
     return InputDecoration(
       labelText: label,
@@ -51,9 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
       filled: true,
       fillColor: Colors.white,
 
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(18),
-      ),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(18)),
 
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(18),
@@ -106,19 +97,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-
-                     //================ logo ==================
+                      //================ logo ==================
                       CircleAvatar(
                         radius: 60,
                         backgroundColor: Colors.white,
-                          backgroundImage:  AssetImage("assets/images/lung.png"),),
+                        backgroundImage: AssetImage("assets/images/lung.png"),
+                      ),
 
                       SizedBox(height: 15),
 
-                      Text("Welcome Back",
-                          style: TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold)),
+                      Text(
+                        "Welcome Back",
+                        style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
 
                       SizedBox(height: 25),
 
@@ -126,49 +120,54 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextFormField(
                         decoration: input("Email", Icons.email),
                         validator: (v) {
-                          if (v == null || v.isEmpty) return "Enter email";
-                          if (!v.contains("@")) return "Must contain @";
-                          if (!v.contains(".com")) return "Must contain .com";
+                          if (v == null || v.isEmpty)
+                            return "Please Enter Email";
+                          if (!v.contains("@") || !v.contains(".com"))
+                            return "Enter Vaild Email";
                           return null;
                         },
                       ),
 
                       SizedBox(height: 18),
 
-                     //============= password ================
+                      //============= password ================
                       TextFormField(
                         obscureText: obscure,
-                        decoration: input("Password", Icons.lock)
-                            .copyWith(
+                        validator: (v) {
+                          if (v == null || v.isEmpty)
+                            return "Please Enter Password";
+                          if (v.length<6)
+                            return "Min 6 characters";
+                          return null;
+                        },
+                        decoration: input("Password", Icons.lock).copyWith(
                           suffixIcon: IconButton(
                             icon: Icon(
-                                obscure
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                                color: Colors.grey),
-                            onPressed: () =>
-                                setState(() => obscure = !obscure),
+                              obscure ? Icons.visibility_off : Icons.visibility,
+                              color: Colors.grey,
+                            ),
+                            onPressed: () => setState(() => obscure = !obscure),
                           ),
                         ),
                       ),
 
                       SizedBox(height: 25),
-
-                      //=============== login button ================
                       ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             navigateWithAnimation(context, HomePage());
                           }
                         },
-                        child: Text("Log In",
-                            style: TextStyle(
-                                fontSize: 16, color: Colors.white)),
+                        child: Text(
+                          "Log In",
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xff2563eb),
                           minimumSize: Size(double.infinity, 55),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18)),
+                            borderRadius: BorderRadius.circular(18),
+                          ),
                           elevation: 6,
                         ),
                       ),
@@ -182,15 +181,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       //================= google button ==================
                       OutlinedButton.icon(
                         onPressed: () {},
-                        icon: Image.network(
-                          "https://cdn-icons-png.flaticon.com/512/300/300221.png",
-                          height: 22,
-                        ),
-                        label: Text("Google",
-                            style: TextStyle(fontSize: 16)),
+                         icon: Image.asset('assets/images/google.png',height: 20,width: 20,),
+                        label: Text("Google", style: TextStyle(fontSize: 16)),
                         style: OutlinedButton.styleFrom(
-                          minimumSize:
-                          Size(double.infinity, 50),
+                          minimumSize: Size(double.infinity, 50),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
                           ),
@@ -199,30 +193,31 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       SizedBox(height: 10),
 
-                      //======================== create new account ====================
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                      TextButton(
-                        onPressed: () {
-                          navigateWithAnimation(context, SignUpScreen());
-
-                        },
-                        child: Text("Create new account",style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),),
+                          TextButton(
+                            onPressed: () {
+                              navigateWithAnimation(context, SignUpScreen());
+                            },
+                            child: Text(
+                              "Create new account",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                    ],
-                  ),
+                ),
               ),
             ),
           ),
         ),
       ),
-    ),
     );
   }
 }

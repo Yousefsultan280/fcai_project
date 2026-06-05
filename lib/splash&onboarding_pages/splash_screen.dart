@@ -14,8 +14,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
-
     Timer(const Duration(seconds: 4), () {
       Navigator.pushReplacement(
         context,
@@ -32,23 +30,18 @@ class _SplashScreenState extends State<SplashScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-
             Container(
               width: double.infinity,
-
               child: const Center(
                 child: Image(
                   image: AssetImage('assets/images/pulmoscan_splash.png'),fit: BoxFit.fill,
-
                 ),
               ),
             ),
-        
             Container(
               width: double.infinity,
               height: 150,
               color: Color(0xff195dfc),
-
             ),
           ],
         ),

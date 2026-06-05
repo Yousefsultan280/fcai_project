@@ -74,7 +74,6 @@ class _RecordPageState extends State<RecordPage> with SingleTickerProviderStateM
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // Header
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
@@ -83,7 +82,7 @@ class _RecordPageState extends State<RecordPage> with SingleTickerProviderStateM
                     style: TextStyle(color: Colors.white, fontSize: 22),
                   ),
                   Text(
-                    "Youssef Sultan",
+                    "Youssef",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -95,7 +94,6 @@ class _RecordPageState extends State<RecordPage> with SingleTickerProviderStateM
 
               const SizedBox(height: 100),
 
-              // Animated Mic Icon
               AnimatedBuilder(
                 animation: _animationController,
                 builder: (context, child) {
@@ -113,7 +111,6 @@ class _RecordPageState extends State<RecordPage> with SingleTickerProviderStateM
 
               const SizedBox(height: 25),
 
-              // Recording text
               Text(
                 _isRecording ? 'Recording in progress...' : 'Tap to start recording',
                 style: const TextStyle(
@@ -152,26 +149,6 @@ class _RecordPageState extends State<RecordPage> with SingleTickerProviderStateM
               ),
 
               const Spacer(),
-
-              // if (_filePath != null)
-              //   Column(
-              //     children: [
-              //       const Text(
-              //         "Last recording saved at:",
-              //         style: TextStyle(color: Colors.white70, fontSize: 16),
-              //       ),
-              //       const SizedBox(height: 4),
-              //       Text(
-              //         _filePath!,
-              //         textAlign: TextAlign.center,
-              //         style: const TextStyle(
-              //           color: Colors.white,
-              //           fontSize: 14,
-              //           fontStyle: FontStyle.italic,
-              //         ),
-              //       ),
-              //     ],
-               // ),
             ],
           ),
         ),

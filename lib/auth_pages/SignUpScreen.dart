@@ -7,7 +7,6 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-
   final _formKey = GlobalKey<FormState>();
 
   bool p1 = true;
@@ -24,9 +23,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       filled: true,
       fillColor: Colors.white,
 
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(18),
-      ),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(18)),
 
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(18),
@@ -44,7 +41,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-
         //============ background ============
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -53,14 +49,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
             end: Alignment.bottomRight,
           ),
         ),
-
-
         child: Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 50),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
               child: Container(
-                padding: EdgeInsets.only(left: 15,right: 15),
+                padding: EdgeInsets.only(left: 15, right: 15),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(28),
@@ -79,17 +73,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-
-                      Icon(Icons.person_add,
-                          size: 60, color: Color(0xff2563eb)),
-
+                      Icon(
+                        Icons.person_add,
+                        size: 60,
+                        color: Color(0xff2563eb),
+                      ),
                       SizedBox(height: 15),
-
-                      Text("Create Account",
-                          style: TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold)),
-
+                      Text(
+                        "Create Account",
+                        style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
 
                       SizedBox(height: 25),
                       //===================== text field for display name ================
@@ -99,24 +95,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           if (v == null || v.isEmpty)
                             return "Enter display name";
 
-                          if (v.length < 3)
-                            return "Min 3 characters";
+                          if (v.length < 3) return "Min 3 characters";
 
                           return null;
                         },
                       ),
                       SizedBox(height: 18),
 
-
                       //===================== text field for username ================
                       TextFormField(
                         decoration: input("Username", Icons.person),
                         validator: (v) {
-                          if (v == null || v.isEmpty)
-                            return "Enter username";
+                          if (v == null || v.isEmpty) return "Enter username";
 
-                          if (v.length < 3)
-                            return "Min 3 characters";
+                          if (v.length < 3) return "Min 3 characters";
 
                           if (v.contains(" "))
                             return "Username must not contain spaces";
@@ -127,23 +119,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                       SizedBox(height: 18),
 
-
                       //===================== text field for email ================
                       TextFormField(
                         decoration: input("Email", Icons.email),
                         validator: (v) {
                           if (v == null || v.isEmpty)
-                            return "Enter email";
-
-                          if (!v.contains("@"))
-                            return "Email must contain @";
-
-                          if (!v.contains("gmail"))
-                            return "Email must contain gmail";
-
-                          if (!v.contains(".com"))
-                            return "Email must contain .com";
-
+                            return "Please Enter Email";
+                          if (!v.contains("@") || !v.contains(".com"))
+                            return "Enter Vaild Email";
                           return null;
                         },
                       ),
@@ -154,49 +137,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       TextFormField(
                         controller: passwordController,
                         obscureText: p1,
-                        decoration: input("Password", Icons.lock)
-                            .copyWith(
+                        decoration: input("Password", Icons.lock).copyWith(
                           suffixIcon: IconButton(
                             icon: Icon(
-                                p1
-                                    ? Icons.visibility_off
-                                    : Icons.visibility),
-                            onPressed: () =>
-                                setState(() => p1 = !p1),
+                              p1 ? Icons.visibility_off : Icons.visibility,
+                            ),
+                            onPressed: () => setState(() => p1 = !p1),
                           ),
                         ),
                         validator: (v) {
-                          if (v == null || v.isEmpty)
-                            return "Enter password";
-
-                          if (v.length < 6)
-                            return "Min 6 characters";
-
+                          if (v == null || v.isEmpty) return "Please Enter Password";
+                          if (v.length < 6) return "Min 6 characters";
                           return null;
                         },
                       ),
-
                       SizedBox(height: 18),
-
                       // ===================== text field for confirm password ==================
                       TextFormField(
                         controller: confirmController,
                         obscureText: p2,
-                        decoration:
-                        input("Confirm Password", Icons.lock)
+                        decoration: input("Confirm Password", Icons.lock)
                             .copyWith(
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                                p2
-                                    ? Icons.visibility_off
-                                    : Icons.visibility),
-                            onPressed: () =>
-                                setState(() => p2 = !p2),
-                          ),
-                        ),
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  p2 ? Icons.visibility_off : Icons.visibility,
+                                ),
+                                onPressed: () => setState(() => p2 = !p2),
+                              ),
+                            ),
                         validator: (v) {
-                          if (v == null || v.isEmpty)
-                            return "Confirm password";
+                          if (v == null || v.isEmpty) return "Confirm password";
 
                           if (v != passwordController.text)
                             return "Passwords do not match";
@@ -211,35 +181,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-
-
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(
+                            ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content:
-                                Text("Account created successfully"),
+                                content: Text("Account created successfully"),
                               ),
                             );
 
                             //================ navigate to login screen =====================
                             navigateWithAnimation(context, LoginScreen());
-
                           }
                         },
-                        child: Text("Sign Up",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white)),
+                        child: Text(
+                          "Sign Up",
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xff2563eb),
                           minimumSize: Size(double.infinity, 55),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18)),
+                            borderRadius: BorderRadius.circular(18),
+                          ),
                         ),
                       ),
 
                       SizedBox(height: 20),
-                      //===================== or ===================
                       Row(
                         children: [
                           Expanded(child: Divider()),
@@ -254,58 +219,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(height: 24),
 
                       //===================== google button ===================
-                      Material(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(14),
-                        elevation: 2,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(14),
-                          onTap: () {
-                            print("Google button pressed");
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            height: 55,
-                            padding: EdgeInsets.symmetric(horizontal: 16),
-                            child: Row(
-                              children: [
-                                Image.network(
-                                  "https://cdn-icons-png.flaticon.com/512/300/300221.png",
-                                  height: 24,
-                                ),
-
-                                SizedBox(width: 14),
-
-                                Expanded(
-                                  child: Text(
-                                    "Continue with Google",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black87,
-                                    ),
-                                  ),
-                                ),
-
-                                SizedBox(width: 38),
-                              ],
-                            ),
+                      OutlinedButton.icon(
+                        onPressed: () {},
+                        icon:Image.asset('assets/images/google.png',height: 20,width: 20,),
+                        label: Text("Continue with Google", style: TextStyle(fontSize: 16)),
+                        style: OutlinedButton.styleFrom(
+                          minimumSize: Size(double.infinity, 50),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
                           ),
                         ),
                       ),
 
-
-
-
                       SizedBox(height: 10),
-
-                      //===================== already have an account button ===================
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           TextButton(
-                            onPressed: () =>  navigateWithAnimation(context, LoginScreen()),
+                            onPressed: () =>
+                                navigateWithAnimation(context, LoginScreen()),
                             child: Row(
                               children: [
                                 Text(
@@ -331,7 +263,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ],
                       ),
-
                     ],
                   ),
                 ),
