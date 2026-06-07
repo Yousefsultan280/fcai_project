@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../homeScreen_pages/home_page.dart';
 import 'SignUpScreen.dart';
@@ -14,9 +17,14 @@ void navigateWithAnimation(BuildContext context, Widget page) {
         final slide = Tween(
           begin: Offset(1, 0),
           end: Offset.zero,
-        ).animate(CurvedAnimation(parent: animation, curve: Curves.easeInOut));
+        ).animate(
+          CurvedAnimation(parent: animation, curve: Curves.easeInOut),
+        );
 
-        final fade = Tween<double>(begin: 0, end: 1).animate(animation);
+        final fade = Tween<double>(
+          begin: 0,
+          end: 1,
+        ).animate(animation);
 
         return FadeTransition(
           opacity: fade,
@@ -34,17 +42,84 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
+
   bool obscure = true;
+  bool isLoading = false;
+
+  final TextEditingController emailController =
+  TextEditingController();
+
+  final TextEditingController passwordController =
+  TextEditingController();
+
+  //===================== API Login Function =====================
+  Future<void> login() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    final url = Uri.parse(
+      'https://lungdiseases.runasp.net/api/Authentication/Login',
+    );
+
+    try {
+      final response = await http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          "email": emailController.text.trim(),
+          "password": passwordController.text.trim(),
+        }),
+      );
+
+      final data = jsonDecode(response.body);
+
+      if (response.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Login Success"),
+            backgroundColor: Colors.green,
+          ),
+        );
+
+        navigateWithAnimation(context, HomePage());
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              data["message"] ?? "Login Failed",
+            ),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Error: $e"),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
   //===================== function to create input decoration with icon ================
   InputDecoration input(String label, IconData icon) {
     return InputDecoration(
       labelText: label,
       prefixIcon: Icon(icon, color: Color(0xff2563eb)),
-
       filled: true,
       fillColor: Colors.white,
 
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(18)),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(18),
+      ),
 
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(18),
@@ -53,7 +128,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(18),
-        borderSide: BorderSide(color: Color(0xff2563eb), width: 2),
+        borderSide: BorderSide(
+          color: Color(0xff2563eb),
+          width: 2,
+        ),
       ),
     );
   }
@@ -65,7 +143,10 @@ class _LoginScreenState extends State<LoginScreen> {
         //============ background ============
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xff1e3a8a), Color(0xff3b82f6)],
+            colors: [
+              Color(0xff1e3a8a),
+              Color(0xff3b82f6),
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -79,9 +160,11 @@ class _LoginScreenState extends State<LoginScreen> {
               //==================== card ===================
               child: Container(
                 padding: EdgeInsets.all(25),
+
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(28),
+
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black26,
@@ -94,6 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // ===================== form ================
                 child: Form(
                   key: _formKey,
+
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -101,13 +185,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       CircleAvatar(
                         radius: 60,
                         backgroundColor: Colors.white,
-                        backgroundImage: AssetImage("assets/images/lung.png"),
+                        backgroundImage: AssetImage(
+                          "assets/images/lung.png",
+                        ),
                       ),
 
                       SizedBox(height: 15),
 
                       Text(
                         "Welcome Back",
+
                         style: TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
@@ -118,12 +205,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       //============= email ================
                       TextFormField(
-                        decoration: input("Email", Icons.email),
+                        controller: emailController,
+
+                        decoration: input(
+                          "Email",
+                          Icons.email,
+                        ),
+
                         validator: (v) {
-                          if (v == null || v.isEmpty)
+                          if (v == null || v.isEmpty) {
                             return "Please Enter Email";
-                          if (!v.contains("@") || !v.contains(".com"))
-                            return "Enter Vaild Email";
+                          }
+
+                          if (!v.contains("@") ||
+                              !v.contains(".com")) {
+                            return "Enter Valid Email";
+                          }
+
                           return null;
                         },
                       ),
@@ -132,43 +230,80 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       //============= password ================
                       TextFormField(
+                        controller: passwordController,
+
                         obscureText: obscure,
+
                         validator: (v) {
-                          if (v == null || v.isEmpty)
+                          if (v == null || v.isEmpty) {
                             return "Please Enter Password";
-                          if (v.length<6)
+                          }
+
+                          if (v.length < 6) {
                             return "Min 6 characters";
+                          }
+
                           return null;
                         },
-                        decoration: input("Password", Icons.lock).copyWith(
+
+                        decoration: input(
+                          "Password",
+                          Icons.lock,
+                        ).copyWith(
                           suffixIcon: IconButton(
                             icon: Icon(
-                              obscure ? Icons.visibility_off : Icons.visibility,
+                              obscure
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
                               color: Colors.grey,
                             ),
-                            onPressed: () => setState(() => obscure = !obscure),
+
+                            onPressed: () {
+                              setState(() {
+                                obscure = !obscure;
+                              });
+                            },
                           ),
                         ),
                       ),
 
                       SizedBox(height: 25),
+
+                      //================ Login Button =================
                       ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            navigateWithAnimation(context, HomePage());
+                          if (_formKey.currentState!
+                              .validate()) {
+                            login();
                           }
                         },
-                        child: Text(
-                          "Log In",
-                          style: TextStyle(fontSize: 16, color: Colors.white),
-                        ),
+
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xff2563eb),
-                          minimumSize: Size(double.infinity, 55),
+                          backgroundColor:
+                          Color(0xff2563eb),
+
+                          minimumSize:
+                          Size(double.infinity, 55),
+
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18),
+                            borderRadius:
+                            BorderRadius.circular(18),
                           ),
+
                           elevation: 6,
+                        ),
+
+                        child: isLoading
+                            ? CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                            : Text(
+                          "Log In",
+
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
 
@@ -181,12 +316,25 @@ class _LoginScreenState extends State<LoginScreen> {
                       //================= google button ==================
                       OutlinedButton.icon(
                         onPressed: () {},
-                         icon: Image.asset('assets/images/google.png',height: 20,width: 20,),
-                        label: Text("Google", style: TextStyle(fontSize: 16)),
+
+                        icon: Image.asset(
+                          'assets/images/google.png',
+                          height: 20,
+                          width: 20,
+                        ),
+
+                        label: Text(
+                          "Google",
+                          style: TextStyle(fontSize: 16),
+                        ),
+
                         style: OutlinedButton.styleFrom(
-                          minimumSize: Size(double.infinity, 50),
+                          minimumSize:
+                          Size(double.infinity, 50),
+
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius:
+                            BorderRadius.circular(15),
                           ),
                         ),
                       ),
@@ -194,14 +342,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(height: 10),
 
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment:
+                        MainAxisAlignment.center,
+
                         children: [
                           TextButton(
                             onPressed: () {
-                              navigateWithAnimation(context, SignUpScreen());
+                              navigateWithAnimation(
+                                context,
+                                SignUpScreen(),
+                              );
                             },
+
                             child: Text(
                               "Create new account",
+
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.black,
