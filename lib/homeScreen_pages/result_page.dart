@@ -1,65 +1,32 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_localizations.dart';
+
 class ResultPage extends StatelessWidget {
-  const ResultPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MedicalResultScreen(
-      testName: 'Blood Pressure Result',
-      resultValue: '120/80',
-      resultStatus: 'Normal',
-    );
-  }
-}
-
-class MedicalResultScreen extends StatelessWidget {
-  final String testName;
-  final String resultValue;
-  final String resultStatus;
-
-  const MedicalResultScreen({
+  final String disease;
+  final double con;
+  final String reco;
+  ResultPage({
     super.key,
-    required this.testName,
-    required this.resultValue,
-    required this.resultStatus,
+    required this.disease,
+    required this.con,
+    required this.reco,
   });
-
-  Color _getStatusColor() {
-    switch (resultStatus.toLowerCase()) {
-      case 'good':
-      case 'normal':
-        return Colors.greenAccent.shade400;
-      case 'bad':
-      case 'high':
-      case 'low':
-        return Colors.redAccent.shade200;
-      default:
-        return Colors.amberAccent.shade400;
-    }
-  }
-
-  IconData _getStatusIcon() {
-    switch (resultStatus.toLowerCase()) {
-      case 'good':
-      case 'normal':
-        return Icons.check_circle_outline;
-      case 'bad':
-      case 'high':
-      case 'low':
-        return Icons.warning_amber_rounded;
-      default:
-        return Icons.info_outline;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    final statusColor = _getStatusColor();
+    final lang = AppLocalizations.of(context)!;
+
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+    final height = size.height;
+
+    double confidence = con * 100;
+    int value = confidence.round();
 
     return Scaffold(
       body: Container(
         width: double.infinity,
+        height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xff1e3a8a), Color(0xff2563eb), Color(0xff60a5fa)],
@@ -67,101 +34,158 @@ class MedicalResultScreen extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 60),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Test Result",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
-                ),
-              ),
-              const SizedBox(height: 50),
 
-              // Result Card
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 400),
-                padding: const EdgeInsets.all(25),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.95),
-                  borderRadius: BorderRadius.circular(25),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.15),
-                      blurRadius: 12,
-                      offset: const Offset(0, 6),
-                    ),
-                  ],
+        child: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: width * 0.05,
+              vertical: height * 0.03,
+            ),
+
+            child: Column(
+              children: [
+                //================ back button =================
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.arrow_back),
+                    color: Colors.white,
+                  ),
                 ),
-                child: Column(
-                  children: [
-                    Icon(
-                      _getStatusIcon(),
-                      color: statusColor,
-                      size: 80,
-                    ),
-                    const SizedBox(height: 20),
-                    Text(
-                      testName,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.indigo,
+
+                SizedBox(height: height * 0.04),
+
+                //================ title =================
+                Text(
+                  lang.test_result,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: width * 0.07 > 28 ? 28 : width * 0.07,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+
+                SizedBox(height: height * 0.05),
+
+                //================ card =================
+                Expanded(
+                  child: Center(
+                    child: SingleChildScrollView(
+                      child: Container(
+                        width: width > 600 ? 500 : double.infinity,
+
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 12,
+                              offset: Offset(0, 6),
+                            ),
+                          ],
+                        ),
+
+                        child: Padding(
+                          padding: EdgeInsets.all(width * 0.05),
+                          child: Column(
+                            children: [
+                              // optional spacing row (removed empty row)
+                              Text(
+                                lang.disease,
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: width * 0.04,
+                                ),
+                              ),
+
+                              SizedBox(height: height * 0.01),
+
+                              Text(
+                                disease,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: width * 0.06 > 24
+                                      ? 24
+                                      : width * 0.06,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+
+                              SizedBox(height: height * 0.03),
+
+                              Text(
+                                lang.confidence,
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: width * 0.04,
+                                ),
+                              ),
+
+                              SizedBox(height: height * 0.01),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    value.toString(),
+                                    style: TextStyle(
+                                      fontSize: width * 0.06 > 24
+                                          ? 24
+                                          : width * 0.06,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    " %",
+                                    style: TextStyle(
+                                      fontSize: width * 0.06 > 24
+                                          ? 24
+                                          : width * 0.06,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              SizedBox(height: height * 0.03),
+
+                              Text(
+                                lang.recommendation,
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: width * 0.04,
+                                ),
+                              ),
+
+                              SizedBox(height: height * 0.01),
+
+                              Text(
+                                reco,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: width * 0.05 > 20
+                                      ? 20
+                                      : width * 0.05,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+
+                              SizedBox(height: height * 0.02),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 15),
-                    Text(
-                      resultValue,
-                      style: const TextStyle(
-                        fontSize: 42,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    Text(
-                      resultStatus,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        color: statusColor,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-
-              const SizedBox(height: 60),
-
-              // Back Button
-              // ElevatedButton.icon(
-              //   style: ElevatedButton.styleFrom(
-              //     backgroundColor: Colors.white,
-              //     padding:
-              //     const EdgeInsets.symmetric(horizontal: 36, vertical: 14),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(30),
-              //     ),
-              //     elevation: 8,
-              //   ),
-              //   onPressed: () => Navigator.pop(context),
-              //   icon: const Icon(Icons.arrow_back, color: Colors.indigo),
-              //   label: const Text(
-              //     "Back",
-              //     style: TextStyle(
-              //       color: Colors.indigo,
-              //       fontSize: 18,
-              //       fontWeight: FontWeight.bold,
-              //     ),
-              //   ),
-              // ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

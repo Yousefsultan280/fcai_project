@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "733876228553",
+    "project_id": "plumoscanai",
+    "storage_bucket": "plumoscanai.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733876228553:android:33e1fb8678eb051ba2d818",
+        "android_client_info": {
+          "package_name": "com.example.fcai_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "733876228553-f4kv1l3qe9c5i93o0ror2n597ofh4mct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaC_okqXKqs2h2oO1CqxeABmm0WjJ6OxA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "733876228553-f4kv1l3qe9c5i93o0ror2n597ofh4mct.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

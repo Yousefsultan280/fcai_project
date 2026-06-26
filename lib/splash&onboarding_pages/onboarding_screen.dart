@@ -1,7 +1,7 @@
-import 'package:fcai_project/info_pages/age_page.dart';
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../auth_pages/LoginScreen.dart';
+import '../l10n/app_localizations.dart';
 
 
 class OnboardingScreen extends StatefulWidget {
@@ -9,32 +9,33 @@ class OnboardingScreen extends StatefulWidget {
   _OnboardingScreenState createState() => _OnboardingScreenState();
 }
 
-// ===================== class (list of map images and text) ======================
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   PageController _pageController = PageController();
   int _currentPage = 0;
 
-  final List<Map<String, String>> onboardingData = [
+  late final List<Map<String, String>> onboardingData = [
     {
       "image": "assets/images/Voice-control-rafiki.png",
-      "title": "Record Your Cough",
-      "subtitle": "Simply record your cough, and let our AI listen carefully to detect any potential lung issues."
+      "title": AppLocalizations.of(context)!.onboarding_title_1,
+      "subtitle": AppLocalizations.of(context)!.onboarding_subtitle_1
     },
     {
       "image": "assets/images/Data-extraction-pana.png",
-      "title": "AI Analyzes Your Lungs",
-      "subtitle": "Our advanced AI algorithms analyze your cough and provide accurate insights into your lung health"
+      "title": AppLocalizations.of(context)!.onboarding_title_2,
+      "subtitle":AppLocalizations.of(context)!.onboarding_subtitle_2
     },
     {
       "image": "assets/images/Resume-folder-pana.png",
-      "title": "Get Health Insights",
-      "subtitle": "Receive detailed results and recommendations to take care of your lungs and improve your respiratory health"
+      "title": AppLocalizations.of(context)!.onboarding_title_3,
+      "subtitle":AppLocalizations.of(context)!.onboarding_subtitle_3
     },
   ];
+  bool seenOnBoard=false;
 
   @override
   Widget build(BuildContext context) {
+    var lang =AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
       appBar: AppBar(
@@ -42,14 +43,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         elevation: 0,
         actions: [
           TextButton(
-            onPressed: () {
+            onPressed: () async{
+              seenOnBoard=true;
+              final prefs = await SharedPreferences.getInstance();
+               await prefs.setBool("seenonboard",seenOnBoard);
+
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => LoginScreen()),
               );
             },
             child: Text(
-              "Skip",
+              lang.skip,
               style: TextStyle(color: Colors.blue, fontSize: 16),
             ),
           ),

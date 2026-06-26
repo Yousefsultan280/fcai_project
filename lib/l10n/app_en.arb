@@ -1,0 +1,136 @@
+{
+  "skip": "Skip",
+
+  "onboarding_title_1": "Record Your Cough",
+  "onboarding_subtitle_1": "Simply record your cough, and let our AI listen carefully to detect any potential lung issues.",
+
+  "onboarding_title_2": "AI Analyzes Your Lungs",
+  "onboarding_subtitle_2": "Our advanced AI algorithms analyze your cough and provide accurate insights into your lung health.",
+
+  "onboarding_title_3": "Get Health Insights",
+  "onboarding_subtitle_3": "Receive detailed results and recommendations to take care of your lungs and improve your respiratory health.",
+
+
+
+
+  "welcome_back": "Welcome Back",
+  "email": "Email",
+  "password": "Password",
+  "please_enter_email": "Please Enter Email",
+  "enter_valid_email": "Enter Valid Email",
+  "please_enter_password": "Please Enter Password",
+  "min_6_characters": "Min 6 characters",
+
+  "forget_password": "Forget Password?",
+  "forgotPassword": "Forgot Password",
+  "enterEmailToReceiveOtp": "Enter your email to receive OTP",
+  "sendOtp": "Send OTP",
+  "pleaseTryAgain": "Please try again",
+
+  "otpVerification": "OTP Verification",
+  "enterOtpSentToEmail": "Enter the OTP sent to your email",
+  "otp": "OTP",
+  "enterOtp": "Enter OTP",
+  "verifyOtp": "Verify OTP",
+  "invaildOtp": "Invaild OTP",
+
+
+  "login": "Log In",
+  "login_success": "Login Success",
+  "login_failed": "Login Failed",
+
+  "or_continue_with": "Or continue with",
+
+  "google": "Google",
+
+  "create_new_account": "Create New Account",
+
+
+
+
+  "create_account": "Create Account",
+  "display_name": "Display Name",
+  "username": "Username",
+  "confirm_password": "Confirm Password",
+
+  "enter_display_name": "Enter display name",
+  "enter_username": "Enter username",
+
+  "min_3_characters": "Min 3 characters",
+
+  "username_no_spaces": "Username must not contain spaces",
+
+  "confirm_password_required": "Confirm password",
+  "passwords_not_match": "Passwords do not match",
+
+  "sign_up": "Sign Up",
+
+  "or": "OR",
+
+  "continue_with_google": "Continue with Google",
+
+  "already_have_account": "Already have an account?",
+
+  "account_created_successfully": "Account created successfully",
+  "register_failed": "Register Failed",
+
+
+
+
+
+  "no_mic_permission": "No Mic Permission",
+
+  "please_try_again": "Please Try Again",
+  "please_try_again_with_space": "Please Try Again",
+
+  "please_login_again": "Please Login Again",
+
+  "hello": "Hello,",
+
+  "recording_in_progress": "Recording in Progress...",
+  "tap_to_start_recording": "Tap to Start Recording",
+
+  "stop_recording": "Stop Recording",
+  "start_recording": "Start Recording",
+
+  "upload_audio":"Upload Audio",
+
+  "analysis_progress": "Analysis Progress",
+  "go_to_result": "Go to Result",
+
+
+
+
+  "test_result": "Test Result",
+  "disease": "Disease",
+  "confidence": "Confidence",
+  "recommendation": "Recommendation",
+
+
+  "my_profile": "My Profile",
+  "logout": "Logout",
+
+  "home": "Home",
+
+
+  "editDisplayName": "Edit Display Name",
+  "displayName": "Display Name",
+  "enterDisplayName": "Enter display name",
+  "min3Characters": "Minimum 3 characters required",
+  "save": "Save",
+  "updatedSuccessfully": "Updated Successfully",
+  "nameAlreadyExists": "The name already exists",
+
+
+
+
+  "resetPassword": "Reset Password",
+  "newPassword": "New Password",
+  "confirmPassword": "Confirm Password",
+  "enterNewPassword": "Enter New Password",
+  "confirmPasswordRequired": "Confirm Password",
+  "passwordTooShort": "Password must be at least 6 characters",
+  "passwordsDoNotMatch": "Passwords do not match",
+  "passwordResetSuccess": "Password Reset Successfully",
+  "resetFailed": "Reset Failed"
+}
