@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:fcai_project/homeScreen_pages/result_page.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:record/record.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -88,9 +89,11 @@ class _RecordPageState extends State<RecordPage>
   Future<void> _start() async {
     if (_isUploading) return;
     try {
+      final dir = await getApplicationDocumentsDirectory();
+      final path = '${dir.path}/audio.wav';
       await _recorder.start(
         const RecordConfig(encoder: AudioEncoder.wav),
-        path: '/storage/emulated/0/recordings/audio.wav',
+        path: path,
       );
 
       setState(() => _isRecording = true);
@@ -121,8 +124,8 @@ class _RecordPageState extends State<RecordPage>
         });
         if (result == null) return;
 
-        await setValue("disease", "${result["disease"]}");
 
+        await setValue("disease", "${result["disease"]}");
         final pref = await SharedPreferences.getInstance();
         pref.setDouble(
           "confidence",
